@@ -39,7 +39,10 @@ export default {
         load(){
           let settingJson = localStorage.getItem('settings');
           this.settings = JSON.parse(settingJson);
-          this.categories = [...new Set(this.settings.map(x => x.category))];
+          if(this.settings){
+            this.categories = [...new Set(this.settings.map(x => x.category))];
+            document.body.style.width = this.categories.length * 200 + 'px';
+          }
         },
         async jumpToCell(setting){
           // eslint-disable-next-line
